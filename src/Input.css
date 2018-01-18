@@ -1,0 +1,23 @@
+.TodosInput, input {
+    box-shadow: 0 0 5px 1px rgba(221, 221, 221, 1);
+    font-family: 'Poiret One', cursive;
+    justify-content: center;
+    background-color: white;
+    font-weight: lighter;
+    border: transparent;
+    text-align: center;
+    transition: 0.3s;
+    font-size: 28px;
+    color: #4D4D4D;
+    margin: 0 auto;
+    display: flex;
+    height: 60px;
+    width: 600px;
+    outline: none;
+}
+
+input:hover {
+    cursor: pointer;
+    transition: 0.3s;
+    outline: none;
+}
