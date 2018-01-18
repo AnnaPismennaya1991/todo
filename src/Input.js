@@ -15,7 +15,7 @@ class Input extends Component {
     render() {
         return (
             <div className='TodosInput'>
-                <input onChange={this.onChange}/>
+                <input onChange={this.onChange} placeholder='What needs to be done?'/>
             </div>
         );
     }
