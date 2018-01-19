@@ -3,8 +3,8 @@ import './Input.css';
 
 class Input extends Component {
     constructor(props){
-            super(props);
-            this.state = {value: ''};
+        super(props);
+        this.state = {value: ''};
     }
 
     onChange = (event) => {
@@ -12,10 +12,20 @@ class Input extends Component {
         this.setState({value: value});
     }
 
+    onKeyPress = (event) => {
+        if (event.charCode === 13) {
+            this.props.addItems({ name: this.state.value, value: false });
+            this.setState({ value: ''});
+        }
+    }
+
     render() {
         return (
             <div className='TodosInput'>
-                <input onChange={this.onChange} placeholder='What needs to be done?'/>
+                <input className='MainInput' onChange={this.onChange}
+                    onKeyPress={this.onKeyPress}
+                    value={this.state.value}
+                    placeholder='What needs to be done?'/>
             </div>
         );
     }
