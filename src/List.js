@@ -7,8 +7,13 @@ class List extends Component {
         return this.props.items.map((item, index) => {
             return (
                 <div className='checkbox-one-box' key={index}>
-                    <input className='checkbox' type='checkbox' checked={item.value} />
-                    <div className='checkbox-text'>{ item.name }</div>
+
+                    {/* <input className='checkbox' type='checkbox' checked={item.value} onChange={(event) => this.props.changeCheckbox(event, index)} /> */}
+
+                    <div className={ item.value ? 'checkbox active' : 'checkbox' } onClick={() => this.props.toogleCheckbox(index)}>
+                        { item.value && <div className='check'></div> }
+                    </div>
+                    <div className={ item.value ? 'checkbox-text active' : 'checkbox-text' }> { item.name } </div>
                 </div>
             )
         });

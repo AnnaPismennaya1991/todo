@@ -1,5 +1,5 @@
 .App {
-    font-family: 'Poiret One', cursive;
+    /* font-family: 'Poiret One', cursive; */
     background-color: #F5F5F5;
     text-align: center;
 }
@@ -8,6 +8,7 @@
     font-family: 'Poiret One', cursive;
     background-color: #F5F5F5;
     font-weight: lighter;
+    text-align:center;
     font-size: 100px;
     color: #E8D8D8;
     height: 120px;

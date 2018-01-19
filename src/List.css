@@ -13,14 +13,38 @@
 
 .checkbox-one-box {
     border-bottom: 1px solid #E6E6E6;
+    align-items: center;
     display: flex;
     height: 55px;
 }
 
 .checkbox {
-    margin: auto 0;
-    height: 40px;
-    width: 40px;
+    border: 1px solid #E6E6E6;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    transition: 0.3s;
+    margin: 0px 10px;
+    display: flex;
+    height: 30px;
+    width: 30px;
+}
+
+.checkbox.active {
+    border: 1px solid #77BFB0;
+}
+
+.checkbox:hover {
+    cursor: pointer;
+    border: 1px solid #77BFB0;
+}
+
+.check {
+    border: 1px solid #77BFB0;
+    background-color: #77BFB0;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
 }
 
 .checkbox-text {
@@ -29,4 +53,9 @@
     font-size: 26px;
     margin: auto 0;
 
+}
+
+.checkbox-text.active{
+    text-decoration: line-through;
+    color: #E6E6E6;
 }

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import './App.css';
 import Input from './Input';
 import List from './List';
+import './App.css';
 
 class App extends Component {
     state = { list: [] };
@@ -9,7 +9,13 @@ class App extends Component {
     addItems = (item) => {
         const { list } = this.state;
         list.push(item);
-        this.setState({ list: list });
+        this.setState({ list });
+    }
+
+    toogleCheckbox = (index) => {
+        const { list } = this.state;
+        list[index].value = !list[index].value;
+        this.setState({ list });
     }
 
     render() {
@@ -20,7 +26,7 @@ class App extends Component {
                 <div className='app-div2'></div>
                 <div className='app-shadow'>
                     <Input addItems={this.addItems} />
-                    <List items={this.state.list}/>
+                    <List items={this.state.list} toogleCheckbox={this.toogleCheckbox}/>
                 </div>
             </div>
         );
