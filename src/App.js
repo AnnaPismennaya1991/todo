@@ -15,9 +15,13 @@ class App extends Component {
     render() {
         return (
             <div className="App">
-                <h1 className="App-title">todos</h1>
-                <Input addItems={this.addItems} />
-                <List  items={this.state.list}/>
+                <h1 className="app-title">todos</h1>
+                <div className='app-div1'></div>
+                <div className='app-div2'></div>
+                <div className='app-shadow'>
+                    <Input addItems={this.addItems} />
+                    <List items={this.state.list}/>
+                </div>
             </div>
         );
     }

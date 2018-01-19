@@ -1,16 +1,22 @@
 .App {
     font-family: 'Poiret One', cursive;
-    text-align: center;
     background-color: #F5F5F5;
+    text-align: center;
 }
 
-.App-title {
+.app-title {
     font-family: 'Poiret One', cursive;
+    background-color: #F5F5F5;
     font-weight: lighter;
     font-size: 100px;
-    margin: 10px;
-    padding: 10px;
-    height: 120px;
-    background-color: #F5F5F5;
     color: #E8D8D8;
+    height: 120px;
+    padding: 10px;
+    margin: 10px;
+}
+
+.app-shadow {
+    box-shadow: 0px 5px 60px 0px rgba(0,0,0,0.15);
+    margin: 0 auto;
+    width: 600px;
 }

@@ -21,8 +21,8 @@ class Input extends Component {
 
     render() {
         return (
-            <div className='TodosInput'>
-                <input className='MainInput' onChange={this.onChange}
+            <div className='Todos-input'>
+                <input className='main-input' onChange={this.onChange}
                     onKeyPress={this.onKeyPress}
                     value={this.state.value}
                     placeholder='What needs to be done?'/>

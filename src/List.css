@@ -1,0 +1,32 @@
+.checkbox-all-boxes {
+    font-family: 'Poiret One', cursive;
+    background-color: white;
+    font-weight: lighter;
+    border: transparent;
+    border-bottom: 1px solid #E6E6E6;
+    font-size: 28px;
+    color: #4D4D4D;
+    margin: 0 auto;
+    width: 600px;
+    outline: none;
+}
+
+.checkbox-one-box {
+    border-bottom: 1px solid #E6E6E6;
+    display: flex;
+    height: 55px;
+}
+
+.checkbox {
+    margin: auto 0;
+    height: 40px;
+    width: 40px;
+}
+
+.checkbox-text {
+    font-family: 'Poiret One', cursive;
+    font-weight: lighter;
+    font-size: 26px;
+    margin: auto 0;
+
+}

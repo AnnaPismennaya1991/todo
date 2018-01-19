@@ -1,12 +1,12 @@
-.TodosInput, .MainInput  {
-    box-shadow: 0 0 5px 1px rgba(221, 221, 221, 1);
+.Todos-input, .main-input {
+    box-shadow: 0px 1px 10px 0px rgba(0,0,0,0.1);
+    border: transparent;
+    border-bottom: 1px solid #E6E6E6;
     font-family: 'Poiret One', cursive;
     justify-content: center;
     background-color: white;
     font-weight: lighter;
-    border: transparent;
     text-align: center;
-    transition: 0.3s;
     font-size: 28px;
     color: #4D4D4D;
     margin: 0 auto;
@@ -16,40 +16,13 @@
     outline: none;
 }
 
-.MainInput:hover {
+.main-input:hover {
     transition: 0.3s;
     cursor: pointer;
     outline: none;
 }
 
-.MainInput::-webkit-input-placeholder {
-    color: #E6E6E6 !important;
-    font-family: 'Poiret One', cursive !important;
-}
-
-.MainInputDiv {
-    box-shadow: 0 0 1px 0.5px rgba(221, 221, 221, 1);
+.main-input::-webkit-input-placeholder {
     font-family: 'Poiret One', cursive;
-    background-color: white;
-    font-weight: lighter;
-    border: transparent;
-    font-size: 28px;
-    color: #4D4D4D;
-    margin: 0 auto;
-    display: flex;
-    height: 60px;
-    width: 600px;
-    outline: none;
-}
-
-.InputCheckbox {
-    margin: auto 10px;
-    width: 20px;
-	height: 20px;
-	border: 2px solid #ccc;
-	border-radius: 5px;
-}
-
-.InputDiv {
-    margin: auto 0;
+    color: #E6E6E6 !important;
 }
