@@ -1,0 +1,42 @@
+.Filter-container {
+    background-color: white;
+    display: flex;
+    height: 60px;
+
+}
+
+.items-left {
+    font-family: 'Poiret One', cursive;
+    margin: auto 15px;
+    color: #777777;
+}
+
+.filter-button {
+    margin: auto 15px;
+    flex: 1;
+}
+
+button {
+    border-color: rgba(175, 47, 47, 0.2);
+    font-family: 'Poiret One', cursive;
+    border: 1px solid transparent;
+    border-color: #cc9a9a;
+    border-radius: 3px;
+    padding: 3px 7px;
+    font-size: 14px;
+    color: #777777;
+    outline: none;
+    margin: 3px;
+
+
+}
+
+button:hover {
+    border-color: rgba(175, 47, 47, 0.1);
+}
+
+.filter-clear-completed {
+    margin: auto 15px;
+    color: #777777;
+
+}

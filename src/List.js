@@ -14,15 +14,14 @@ class List extends Component {
                         { item.value && <div className='check'></div> }
                     </div>
                     <div className={ item.value ? 'checkbox-text active' : 'checkbox-text' }> { item.name } </div>
+                    <button className='delete-button' onClick={() => this.props.removeItem(index)}>×</button>
                 </div>
             )
         });
     }
 
     render() {
-        return this.props.items.length ? (
-            <div className='checkbox-all-boxes'>{ this.renderItems() }</div>
-        ) : null;
+        return <div className='checkbox-all-boxes'>{ this.renderItems() }</div>;
     }
 }
 

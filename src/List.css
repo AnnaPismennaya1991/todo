@@ -1,9 +1,9 @@
 .checkbox-all-boxes {
+    border: transparent;
+    border-bottom: 1px solid #E6E6E6;
     font-family: 'Poiret One', cursive;
     background-color: white;
     font-weight: lighter;
-    border: transparent;
-    border-bottom: 1px solid #E6E6E6;
     font-size: 28px;
     color: #4D4D4D;
     margin: 0 auto;
@@ -18,9 +18,12 @@
     height: 55px;
 }
 
+.checkbox-one-box:hover .delete-button {
+    opacity: 1;
+}
+
 .checkbox {
     border: 1px solid #E6E6E6;
-    justify-content: center;
     align-items: center;
     border-radius: 50%;
     transition: 0.3s;
@@ -35,27 +38,46 @@
 }
 
 .checkbox:hover {
-    cursor: pointer;
     border: 1px solid #77BFB0;
+    cursor: pointer;
 }
 
 .check {
     border: 1px solid #77BFB0;
     background-color: #77BFB0;
     border-radius: 50%;
-    width: 20px;
-    height: 20px;
+    height: 18px;
+    width: 18px;
 }
 
 .checkbox-text {
     font-family: 'Poiret One', cursive;
     font-weight: lighter;
+    text-align: left;
     font-size: 26px;
     margin: auto 0;
-
+    flex: 1;
 }
 
 .checkbox-text.active{
     text-decoration: line-through;
-    color: #E6E6E6;
+    color: #D9D9D9;
+}
+
+.delete-button {
+    font-weight: lighter;
+    border: transparent;
+    transition: 0.3s;
+    font-size: 35px;
+    margin: auto 0;
+    color: #cc9a9a;
+    outline: none;
+    margin: 10px;
+    height: 40px;
+    width: 40px;
+    opacity: 0;
+}
+
+.delete-button:hover {
+    color: #af5b5e;
 }

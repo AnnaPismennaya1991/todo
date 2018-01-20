@@ -2,9 +2,12 @@ import React, { Component } from 'react';
 import './Input.css';
 
 class Input extends Component {
-    constructor(props){
-        super(props);
-        this.state = {value: ''};
+    state = { value: '' };
+
+    // Срабатывает после render когда HTML добавился на страницу
+    componentDidMount() {
+        // Переносит фокус в input
+        this.input.focus();
     }
 
     onChange = (event) => {
@@ -13,7 +16,7 @@ class Input extends Component {
     }
 
     onKeyPress = (event) => {
-        if (event.charCode === 13) {
+        if (event.charCode === 13 && this.state.value) {
             this.props.addItems({ name: this.state.value, value: false });
             this.setState({ value: ''});
         }
@@ -23,6 +26,10 @@ class Input extends Component {
         return (
             <div className='Todos-input'>
                 <input className='main-input' onChange={this.onChange}
+
+                    // Сохраняет ссылку на input в this.input
+                    ref={(node) => this.input = node}
+
                     onKeyPress={this.onKeyPress}
                     value={this.state.value}
                     placeholder='What needs to be done?'/>
