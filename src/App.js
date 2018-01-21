@@ -17,17 +17,37 @@ class App extends Component {
 
     addItems = (item) => {
         const { mainList, filteredList } = this.state;
-        mainList.push(item);
+
+        // side effect - bug
+        // immutable - нужен для  исключения side effects
+
+        // mutalbe - неправильный стиль
+        // item.hello => undefined
+        // mainList.push(item);
+        // mainList[0].hello = 12
+        // item.hello => 12
+
+        // immutable - правильный стиль
+        // item.hello => undefined
+        // mainList.push({ ...item }) // создаем новый объект и разворачиваем в него старый
+        // mainList[0].hello = 12
+        // item.hello => undefined
+
+        mainList.push({ ...item });
         if (!this.state.filters.completed) {
-            filteredList.push(item);
+            filteredList.push({ ...item });
         }
         this.setState({ mainList, filteredList });
     }
 
     toogleCheckbox = (index) => {
+        // меняем value в объекте главного листа
         const { mainList } = this.state;
         mainList[index].value = !mainList[index].value;
         this.setState({ mainList });
+
+        // генерю новый массив filteredList
+        this.filter();
     }
 
     removeItem = (index) => {
@@ -61,15 +81,34 @@ class App extends Component {
     }
 
     clearCompleted = () => {
-        const { mainList } = this.state;
-        const filteredList = mainList.filter((item) => {
-            return !item.value;
-        });
+        const { filteredList, mainList } = this.state;
 
         this.setState({
-            mainList: filteredList,
-            filteredList: filteredList
+            mainList: mainList.filter((item) => {
+                return !item.value;
+            }),
+            filteredList: filteredList.filter((item) => {
+                return !item.value;
+            })
         });
+    }
+
+    filter = () => {
+        const { mainList, filters } = this.state;
+
+        const filteredList = mainList.filter((item) => {
+            if (!filters.active && !filters.completed) {
+                return true;
+            }
+
+            if (filters.active) {
+                return !item.value;
+            }
+
+            return item.value;
+        });
+
+        this.setState({ filteredList });
     }
 
     render() {

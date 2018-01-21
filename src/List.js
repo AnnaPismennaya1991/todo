@@ -11,7 +11,7 @@ class List extends Component {
                     {/* <input className='checkbox' type='checkbox' checked={item.value} onChange={(event) => this.props.changeCheckbox(event, index)} /> */}
 
                     <div className={ item.value ? 'checkbox active' : 'checkbox' } onClick={() => this.props.toogleCheckbox(index)}>
-                        { item.value && <div className='check'></div> }
+                        <div className='check'></div>
                     </div>
                     <div className={ item.value ? 'checkbox-text active' : 'checkbox-text' }> { item.name } </div>
                     <button className='delete-button' onClick={() => this.props.removeItem(index)}>×</button>
