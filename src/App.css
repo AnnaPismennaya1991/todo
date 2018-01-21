@@ -2,6 +2,7 @@
     font-family: 'Poiret One', cursive;
     background-color: #F5F5F5;
     text-align: center;
+    /* text-align - по центру, по горизонтали */
 }
 
 .app-title {

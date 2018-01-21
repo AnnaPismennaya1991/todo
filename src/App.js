@@ -5,6 +5,7 @@ import Input from './Input';
 import List from './List';
 import './App.css';
 
+// в классе App храним переменные и state
 class App extends Component {
     state = {
         mainList: [],
@@ -15,24 +16,26 @@ class App extends Component {
         }
     };
 
+    // сокращаем строку this.state.mainList, чтобы можно было обращаться прямо к mainList
     addItems = (item) => {
         const { mainList, filteredList } = this.state;
 
         // side effect - bug
-        // immutable - нужен для  исключения side effects
+        // immutable - (неизменный) нужен для  исключения side effects
 
-        // mutalbe - неправильный стиль
+        // mutalbe - (изменчивый) неправильный стиль
         // item.hello => undefined
         // mainList.push(item);
         // mainList[0].hello = 12
         // item.hello => 12
 
-        // immutable - правильный стиль
+        // immutable - (неизменный) правильный стиль
         // item.hello => undefined
         // mainList.push({ ...item }) // создаем новый объект и разворачиваем в него старый
         // mainList[0].hello = 12
         // item.hello => undefined
 
+        //...spread - oператор расширения
         mainList.push({ ...item });
         if (!this.state.filters.completed) {
             filteredList.push({ ...item });
@@ -41,16 +44,16 @@ class App extends Component {
     }
 
     // Переключает статус item
-    toogleCheckbox = (index) => {
+    toggleCheckbox = (index) => {
         // меняем value в объекте главного листа
         const { mainList } = this.state;
         mainList[index].value = !mainList[index].value;
         this.setState({ mainList });
-
-        // генерю новый массив filteredList
+        // фильтруем массив
         this.filter();
     }
 
+    //удаляем строку в list
     removeItem = (index) => {
         const { mainList } = this.state;
         mainList.splice(index, 1);
@@ -128,14 +131,14 @@ class App extends Component {
     render() {
         return (
             <div className="App">
-                <h1 className="app-title">todos</h1>
+                <h1 className="app-title"> todos </h1>
                 <div className='app-div1'></div>
                 <div className='app-div2'></div>
                 <div className='app-shadow'>
                     <Input addItems={this.addItems} selectAll={this.selectAll} />
                     { !!this.state.mainList.length &&
                         <List items={this.state.filteredList}
-                            toogleCheckbox={this.toogleCheckbox}
+                            toggleCheckbox={this.toggleCheckbox}
                             removeItem={this.removeItem}/>
                     }
                     { !!this.state.mainList.length &&

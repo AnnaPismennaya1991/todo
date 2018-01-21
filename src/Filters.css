@@ -2,7 +2,6 @@
     background-color: white;
     display: flex;
     height: 60px;
-
 }
 
 .items-left {
@@ -28,6 +27,7 @@ button {
     color: #777777;
     outline: none;
     margin: 3px;
+    /* outline: none - Граница не отображается */
 }
 
 button.active,
@@ -42,5 +42,4 @@ button:hover {
 .filter-clear-completed {
     margin: auto 15px;
     color: #777777;
-
 }

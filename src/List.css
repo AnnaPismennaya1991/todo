@@ -16,10 +16,12 @@
     align-items: center;
     display: flex;
     height: 55px;
+    /* align-items: center - Флексы выравниваются по линии поперечной оси */
 }
 
 .checkbox-one-box:hover .delete-button {
     opacity: 1;
+    /* 1 - непрозрачность */
 }
 
 .checkbox {
@@ -37,6 +39,7 @@
 .checkbox .check {
     transition: .3s;
     opacity: 0;
+    /* 0 - полная прозрачность */
 }
 
 .checkbox.active {
@@ -71,6 +74,7 @@
 
 .checkbox-text.active{
     text-decoration: line-through;
+    /* перечеркнутый текст */
     color: #D9D9D9;
 }
 

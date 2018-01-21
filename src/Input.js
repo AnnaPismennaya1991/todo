@@ -15,6 +15,7 @@ class Input extends Component {
         this.setState({value: value});
     }
 
+    // 13 - номер клавиши Enter
     onKeyPress = (event) => {
         if (event.charCode === 13 && this.state.value) {
             this.props.addItems({ name: this.state.value, value: false });
@@ -26,7 +27,7 @@ class Input extends Component {
         return (
             <div className='Todos-input'>
                 <button className='select-all-button' onClick={this.props.selectAll}>
-                    <span> > </span>
+                    <span> ❯ </span>
                 </button>
                 <input className='main-input' onChange={this.onChange}
 

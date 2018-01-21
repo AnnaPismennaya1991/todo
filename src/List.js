@@ -10,11 +10,11 @@ class List extends Component {
 
                     {/* <input className='checkbox' type='checkbox' checked={item.value} onChange={(event) => this.props.changeCheckbox(event, index)} /> */}
 
-                    <div className={ item.value ? 'checkbox active' : 'checkbox' } onClick={() => this.props.toogleCheckbox(index)}>
+                    <div className={ item.value ? 'checkbox active' : 'checkbox' } onClick={() => this.props.toggleCheckbox(index)}>
                         <div className='check'></div>
                     </div>
                     <div className={ item.value ? 'checkbox-text active' : 'checkbox-text' }> { item.name } </div>
-                    <button className='delete-button' onClick={() => this.props.removeItem(index)}>×</button>
+                    <button className='delete-button' onClick={() => this.props.removeItem(index)}> × </button>
                 </div>
             )
         });
