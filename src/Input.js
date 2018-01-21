@@ -25,6 +25,9 @@ class Input extends Component {
     render() {
         return (
             <div className='Todos-input'>
+                <button className='select-all-button' onClick={this.props.selectAll}>
+                    <span> > </span>
+                </button>
                 <input className='main-input' onChange={this.onChange}
 
                     // Сохраняет ссылку на input в this.input

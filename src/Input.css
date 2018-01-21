@@ -16,6 +16,10 @@
     width: 600px;
 }
 
+.Todos-input {
+    position: relative;
+}
+
 .main-input:hover {
     transition: 0.3s;
     cursor: pointer;
@@ -25,4 +29,15 @@
 .main-input::-webkit-input-placeholder {
     font-family: 'Poiret One', cursive;
     color: #E6E6E6 !important;
+}
+
+.select-all-button {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+}
+
+.select-all-button span {
+    transform: rotate(90deg);
+    display: block;
 }

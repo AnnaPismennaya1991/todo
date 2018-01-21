@@ -40,6 +40,7 @@ class App extends Component {
         this.setState({ mainList, filteredList });
     }
 
+    // Переключает статус item
     toogleCheckbox = (index) => {
         // меняем value в объекте главного листа
         const { mainList } = this.state;
@@ -111,6 +112,19 @@ class App extends Component {
         this.setState({ filteredList });
     }
 
+    selectAll = () => {
+        const { filteredList, mainList } = this.state;
+
+        this.setState({
+            mainList: mainList.map((item) => {
+                return { ...item, value: true };
+            }),
+            filteredList: filteredList.map((item) => {
+                return { ...item, value: true };
+            })
+        });
+    }
+
     render() {
         return (
             <div className="App">
@@ -118,10 +132,15 @@ class App extends Component {
                 <div className='app-div1'></div>
                 <div className='app-div2'></div>
                 <div className='app-shadow'>
-                    <Input addItems={this.addItems} />
-                    { !!this.state.mainList.length && <List items={this.state.filteredList} toogleCheckbox={this.toogleCheckbox} removeItem={this.removeItem}/> }
+                    <Input addItems={this.addItems} selectAll={this.selectAll} />
+                    { !!this.state.mainList.length &&
+                        <List items={this.state.filteredList}
+                            toogleCheckbox={this.toogleCheckbox}
+                            removeItem={this.removeItem}/>
+                    }
                     { !!this.state.mainList.length &&
                         <Filters items={this.state.mainList}
+                            filters={this.state.filters}
                             filterAll={this.filterAll}
                             filterActive={this.filterActive}
                             filterCompleted={this.filterCompleted}

@@ -17,18 +17,22 @@
 }
 
 button {
-    border-color: rgba(175, 47, 47, 0.2);
+    border-color: rgba(175, 47, 47, 0);
     font-family: 'Poiret One', cursive;
     border: 1px solid transparent;
-    border-color: #cc9a9a;
     border-radius: 3px;
     padding: 3px 7px;
+    cursor: pointer;
+    transition: .3s;
     font-size: 14px;
     color: #777777;
     outline: none;
     margin: 3px;
+}
 
-
+button.active,
+button.active:hover {
+    border-color: rgba(175, 47, 47, 0.2);
 }
 
 button:hover {
