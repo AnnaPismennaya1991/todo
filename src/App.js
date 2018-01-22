@@ -10,14 +10,19 @@ class App extends Component {
     state = {
         mainList: [],
         filteredList: [],
+        //  выбран объект All (не выбран active, completed)
+        // { active: false, completed: false } => All
+        // { active: true, completed: false } => Active
+        // { active: false, completed: true } => Completed
         filters: {
             active: false,
             completed: false
         }
     };
 
-    // сокращаем строку this.state.mainList, чтобы можно было обращаться прямо к mainList
+    // Добавляет строку в this.state.mainList => List
     addItems = (item) => {
+        // сокращаем строку this.state.mainList, чтобы можно было обращаться прямо к mainList
         const { mainList, filteredList } = this.state;
 
         // side effect - bug
@@ -36,45 +41,62 @@ class App extends Component {
         // item.hello => undefined
 
         //...spread - oператор расширения
+        // item === { name: 'fffff', value: false }
+        // value у нового item всегда будет false
         mainList.push({ ...item });
+         // новые item идут только в active && all
         if (!this.state.filters.completed) {
             filteredList.push({ ...item });
         }
+        // функция обновления состояния mainList, filteredList
         this.setState({ mainList, filteredList });
     }
 
     // Переключает статус item
     toggleCheckbox = (index) => {
-        // меняем value в объекте главного листа
+        // деструктрурируем mainList из this.state
+        // this.state - объект содержащий mainList
+        // деструктор достает mainList из объекта this.state
+        // если this.state не имеет свойства mainList - вернется undefined
         const { mainList } = this.state;
+
+        // меняем value в объекте главного листа
         mainList[index].value = !mainList[index].value;
+
+        // обновляем главный лист
         this.setState({ mainList });
-        // фильтруем массив
+
+        // фильтруем массив (создаем новый filteredList)
         this.filter();
     }
 
-    //удаляем строку в list
+    // удаляем строку в list
     removeItem = (index) => {
         const { mainList } = this.state;
+        // splice() изменяет содержимое массива, удаляет существующие элементы и добавляет новые.
         mainList.splice(index, 1);
         this.setState({ mainList });
     }
 
+    // Приводит фильтры к стартовому состоянию All
     filterAll = () => {
         const { mainList } = this.state;
         const filteredList = mainList;
         this.setState({ filteredList, filters: { completed: false, active: false } });
     }
 
+    // active: true
     filterActive = () => {
         const { mainList } = this.state;
         const filteredList = mainList.filter((item) => {
             return !item.value;
         });
 
+        // Обновляем состояние
         this.setState({ filteredList, filters: { active: true } });
     }
 
+    // completed: true
     filterCompleted = () => {
         const { mainList } = this.state;
         const filteredList = mainList.filter((item) => {
@@ -84,14 +106,21 @@ class App extends Component {
         this.setState({ filteredList, filters: { completed: true } });
     }
 
+    // очищаем завершенные дела
+    // Удаляем элементы, у которых value === true (выбранные)
     clearCompleted = () => {
         const { filteredList, mainList } = this.state;
 
         this.setState({
-            mainList: mainList.filter((item) => {
+
+            mainList: mainList.filter( (item) => {
+                // return - оставить false, удаляет все true
                 return !item.value;
-            }),
+            }
+        ),
+
             filteredList: filteredList.filter((item) => {
+                // return - оставить false, удаляет все true
                 return !item.value;
             })
         });
@@ -102,13 +131,15 @@ class App extends Component {
 
         const filteredList = mainList.filter((item) => {
             if (!filters.active && !filters.completed) {
+                // return - оставить all
                 return true;
             }
 
             if (filters.active) {
+                // return - оставить false, удаляет все true. получаем active
                 return !item.value;
             }
-
+            // return - оставить true, удаляет все false, получаем completed
             return item.value;
         });
 
@@ -120,9 +151,11 @@ class App extends Component {
 
         this.setState({
             mainList: mainList.map((item) => {
+                // меняет все value на true
                 return { ...item, value: true };
             }),
             filteredList: filteredList.map((item) => {
+                // меняет все value на true
                 return { ...item, value: true };
             })
         });
