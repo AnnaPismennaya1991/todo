@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './Input.css';
 
 class Input extends Component {
-    state = { value: '' };
+    state = { value: '', status: true };
 
     // Срабатывает после render когда HTML добавился на страницу
     componentDidMount() {
@@ -23,10 +23,17 @@ class Input extends Component {
         }
     }
 
+    toggleAll = () => {
+        const { status } = this.state;
+        this.props.toggleAll(status);
+
+        this.setState({ status: !status });
+    }
+
     render() {
         return (
             <div className='Todos-input'>
-                <button className='select-all-button' onClick={this.props.selectAll}>
+                <button className='select-all-button' onClick={this.toggleAll}>
                     <span> ❯ </span>
                 </button>
                 <input className='main-input' onChange={this.onChange}

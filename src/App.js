@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
-import Filters from './Filters';
-import Input from './Input';
-import List from './List';
+import Filters from './components/filters/Filters';
+import Input from './components/input/Input';
+import List from './components/list/List';
 import './App.css';
 
 // в классе App храним переменные и state
@@ -74,8 +74,14 @@ class App extends Component {
     removeItem = (index) => {
         const { mainList } = this.state;
         // splice() изменяет содержимое массива, удаляет существующие элементы и добавляет новые.
-        mainList.splice(index, 1);
-        this.setState({ mainList });
+        // mainList.splice(index, 1);
+
+        // Создаем новый массив методом filter.
+        // Возвращаем все элементы, у которых _index не равен переданному index
+        const newList = mainList.filter((item, _index) => _index !== index);
+
+        // setState - асинхронная функция, поэтому вызываем фильтр только после обновления стейта в callback
+        this.setState({ mainList: newList }, this.filter);
     }
 
     // Приводит фильтры к стартовому состоянию All
@@ -146,17 +152,17 @@ class App extends Component {
         this.setState({ filteredList });
     }
 
-    selectAll = () => {
+    toggleAll = (status) => {
         const { filteredList, mainList } = this.state;
 
         this.setState({
             mainList: mainList.map((item) => {
-                // меняет все value на true
-                return { ...item, value: true };
+                // меняет все value на status
+                return { ...item, value: status };
             }),
             filteredList: filteredList.map((item) => {
-                // меняет все value на true
-                return { ...item, value: true };
+                // меняет все value на status
+                return { ...item, value: status };
             })
         });
     }
@@ -168,7 +174,7 @@ class App extends Component {
                 <div className='app-div1'></div>
                 <div className='app-div2'></div>
                 <div className='app-shadow'>
-                    <Input addItems={this.addItems} selectAll={this.selectAll} />
+                    <Input addItems={this.addItems} toggleAll={this.toggleAll} />
                     { !!this.state.mainList.length &&
                         <List items={this.state.filteredList}
                             toggleCheckbox={this.toggleCheckbox}
