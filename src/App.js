@@ -20,6 +20,19 @@ class App extends Component {
         }
     };
 
+    componentWillMount() {
+        // localStorage.getItem - получает строку items из localStorage
+        // JSON.parse - превращает строку items в массив объектов
+
+        const mainList = JSON.parse( localStorage.getItem('items') || '[]' );
+        const filters = JSON.parse( localStorage.getItem('filters') || '{}' );
+
+        // setState - асихронная функция, принимает 2 параметра
+        // 1 параметр - объект нового стейта
+        // 2 параметр - callback (this.filter - будет вызван после обновления стейта)
+        this.setState({ mainList, filters }, this.filter);
+    }
+
     // Добавляет строку в this.state.mainList => List
     addItems = (item) => {
         // сокращаем строку this.state.mainList, чтобы можно было обращаться прямо к mainList
@@ -44,6 +57,13 @@ class App extends Component {
         // item === { name: 'fffff', value: false }
         // value у нового item всегда будет false
         mainList.push({ ...item });
+
+        // localStorage.setItem - создает либо изменяет переменную items и присвает ей второй параметр
+        // 1 параметр - название переменной
+        // 2 параметр - значение переменной
+        // JSON.stringify - превращает любую переменную (в данном случае массив объектов) в строку
+        localStorage.setItem('items', JSON.stringify(mainList));
+
          // новые item идут только в active && all
         if (!this.state.filters.completed) {
             filteredList.push({ ...item });
@@ -86,30 +106,18 @@ class App extends Component {
 
     // Приводит фильтры к стартовому состоянию All
     filterAll = () => {
-        const { mainList } = this.state;
-        const filteredList = mainList;
-        this.setState({ filteredList, filters: { completed: false, active: false } });
+        this.setState({ filters: { completed: false, active: false } }, this.filter);
     }
 
     // active: true
     filterActive = () => {
-        const { mainList } = this.state;
-        const filteredList = mainList.filter((item) => {
-            return !item.value;
-        });
-
         // Обновляем состояние
-        this.setState({ filteredList, filters: { active: true } });
+        this.setState({ filters: { active: true } }, this.filter);
     }
 
     // completed: true
     filterCompleted = () => {
-        const { mainList } = this.state;
-        const filteredList = mainList.filter((item) => {
-            return item.value;
-        });
-
-        this.setState({ filteredList, filters: { completed: true } });
+        this.setState({ filters: { completed: true } }, this.filter);
     }
 
     // очищаем завершенные дела
@@ -117,23 +125,25 @@ class App extends Component {
     clearCompleted = () => {
         const { filteredList, mainList } = this.state;
 
-        this.setState({
+        const newMainList = mainList.filter((item) => {
+            // return - оставить false, удаляет все true
+            return !item.value;
+        });
 
-            mainList: mainList.filter( (item) => {
-                // return - оставить false, удаляет все true
-                return !item.value;
-            }
-        ),
+        const newFilteredList = filteredList.filter((item) => {
+            // return - оставить false, удаляет все true
+            return !item.value;
+        });
 
-            filteredList: filteredList.filter((item) => {
-                // return - оставить false, удаляет все true
-                return !item.value;
-            })
+        this.setState({ mainList: newMainList, filteredList: newFilteredList }, () => {
+            localStorage.setItem('items', JSON.stringify(newMainList));
         });
     }
 
     filter = () => {
         const { mainList, filters } = this.state;
+        localStorage.setItem('items', JSON.stringify(mainList));
+        localStorage.setItem('filters', JSON.stringify(filters));
 
         const filteredList = mainList.filter((item) => {
             if (!filters.active && !filters.completed) {
@@ -155,15 +165,18 @@ class App extends Component {
     toggleAll = (status) => {
         const { filteredList, mainList } = this.state;
 
-        this.setState({
-            mainList: mainList.map((item) => {
-                // меняет все value на status
-                return { ...item, value: status };
-            }),
-            filteredList: filteredList.map((item) => {
-                // меняет все value на status
-                return { ...item, value: status };
-            })
+        const newMainList = mainList.map((item) => {
+            // меняет все value на status
+            return { ...item, value: status };
+        });
+
+        const newFilteredList = filteredList.map((item) => {
+            // меняет все value на status
+            return { ...item, value: status };
+        });
+
+        this.setState({ mainList: newMainList, filteredList: newFilteredList }, () => {
+            localStorage.setItem('items', JSON.stringify(newMainList));
         });
     }
 
